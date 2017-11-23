@@ -16,7 +16,7 @@ class CustomTextField: UITextField {
         layer.borderColor = UIColor(displayP3Red: SHADOW_GREY, green: SHADOW_GREY, blue: SHADOW_GREY, alpha: 0.3).cgColor
         
         layer.borderWidth = 2
-        layer.cornerRadius = 10
+        layer.cornerRadius = 10  
     }
 
     //Modify ident for input text
