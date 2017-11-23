@@ -13,6 +13,10 @@ import Firebase
 
 class LoginPageVC: UIViewController {
     
+    @IBOutlet weak var emailField: CustomTextField!
+    @IBOutlet weak var passwordField: CustomTextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -50,6 +54,27 @@ class LoginPageVC: UIViewController {
     }
     
 }
-
+    @IBAction func emailSignInPressed(_ sender: Any) {
+        if let email = emailField.text, let pwd = passwordField.text {
+            Auth.auth().signIn(withEmail: email, password: pwd, completion: { (user, error) in
+                if error == nil {   //user signed in with existing account
+                    print("Signed in with existing email")
+                } else {
+                    Auth.auth().createUser(withEmail: email, password: pwd, completion: { (user, error) in
+                        if error != nil {
+                            print("Unable to authenticate with email/password \(error ?? "" as! Error)")
+                        } else {
+                            print("New user account created and signed in ")
+                        }
+                    })
+                }
+            })
+            
+            
+        }
+        
+        
+    }
+    
 
 }

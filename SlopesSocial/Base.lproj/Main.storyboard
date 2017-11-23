@@ -82,12 +82,15 @@
                                         <rect key="frame" x="0.0" y="42" width="315" height="24"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1HP-cP-OpD" customClass="CustomSignInBtn" customModule="SlopesSocial" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="84" width="315" height="30"/>
                                         <color key="backgroundColor" red="1" green="0.63529411764705879" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Sign In"/>
+                                        <connections>
+                                            <action selector="emailSignInPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="87a-7d-SAk"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -125,6 +128,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="ayM-sK-e0Q" id="gJR-nX-7Zn"/>
+                        <outlet property="passwordField" destination="X3t-nd-4EN" id="bae-tk-Hfc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
