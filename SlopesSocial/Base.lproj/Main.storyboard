@@ -69,8 +69,19 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="XSY-W6-lch">
-                                <rect key="frame" x="30" y="392" width="315" height="114"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vsL-Wx-IMi" customClass="RoundBtn" customModule="SlopesSocial" customModuleProvider="target">
+                                <rect key="frame" x="125" y="204" width="125" height="125"/>
+                                <color key="backgroundColor" red="0.25490196079999999" green="0.36078431370000003" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="125" id="KRL-3R-4Yu"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="f"/>
+                                <connections>
+                                    <action selector="facbookBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="651-lh-bxl"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="XSY-W6-lch">
+                                <rect key="frame" x="30" y="400" width="315" height="114"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ayM-sK-e0Q" customClass="CustomTextField" customModule="SlopesSocial" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="315" height="24"/>
@@ -94,17 +105,6 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vsL-Wx-IMi" customClass="RoundBtn" customModule="SlopesSocial" customModuleProvider="target">
-                                <rect key="frame" x="125" y="204" width="125" height="125"/>
-                                <color key="backgroundColor" red="0.25490196079999999" green="0.36078431370000003" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="125" id="KRL-3R-4Yu"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="f"/>
-                                <connections>
-                                    <action selector="facbookBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="651-lh-bxl"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -131,11 +131,43 @@
                     <connections>
                         <outlet property="emailField" destination="ayM-sK-e0Q" id="gJR-nX-7Zn"/>
                         <outlet property="passwordField" destination="X3t-nd-4EN" id="bae-tk-Hfc"/>
+                        <segue destination="dNF-8e-D5h" kind="show" identifier="toNewsFeed" id="Kru-52-8vq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="32.799999999999997" y="33.733133433283363"/>
+            <point key="canvasLocation" x="-638" y="109"/>
+        </scene>
+        <!--News FeedVC-->
+        <scene sceneID="VNf-vP-5my">
+            <objects>
+                <viewController id="dNF-8e-D5h" customClass="NewsFeedVC" customModule="SlopesSocial" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9OV-ZK-van">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zmh-AA-4vo">
+                                <rect key="frame" x="9" y="20" width="60" height="30"/>
+                                <state key="normal" title="Sign Out"/>
+                                <connections>
+                                    <action selector="signOutPressed:" destination="dNF-8e-D5h" eventType="touchUpInside" id="qYF-OQ-nHF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.63529411759999999" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="zmh-AA-4vo" firstAttribute="top" secondItem="RMR-dy-e91" secondAttribute="top" id="05T-Ae-f1a"/>
+                            <constraint firstItem="zmh-AA-4vo" firstAttribute="leading" secondItem="RMR-dy-e91" secondAttribute="leading" constant="9" id="WVz-gM-fWT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="RMR-dy-e91"/>
+                    </view>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="toLogin" id="AvO-J9-TMg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XNl-do-At1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="334" y="108"/>
         </scene>
     </scenes>
     <resources>

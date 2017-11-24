@@ -10,6 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 import Firebase
+import SwiftKeychainWrapper
 
 class LoginPageVC: UIViewController {
     
@@ -19,7 +20,14 @@ class LoginPageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+}
+    
+    override func viewDidAppear(_ animated: Bool) {
+        // Segue must be in here not viewdidload 
+        if let _  = KeychainWrapper.standard.string(forKey: "uid") {
+            performSegue(withIdentifier: "toNewsFeed", sender: nil)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -47,7 +55,10 @@ class LoginPageVC: UIViewController {
                         return
                     }
                     print("Successfully signed in FB as:", user ?? "")
-                
+                    if let user = user {
+                        self.storeloginInKeychain(id: user.uid)
+                    }
+                   
             }
         }
         
@@ -59,13 +70,22 @@ class LoginPageVC: UIViewController {
             Auth.auth().signIn(withEmail: email, password: pwd, completion: { (user, error) in
                 if error == nil {   //user signed in with existing account
                     print("Signed in with existing email")
+                    if let user = user {
+                        self.storeloginInKeychain(id: user.uid)
+                    }
+                    
                 } else {
+                    // Authorise with firebase
                     Auth.auth().createUser(withEmail: email, password: pwd, completion: { (user, error) in
                         if error != nil {
                             print("Unable to authenticate with email/password \(error ?? "" as! Error)")
                         } else {
                             print("New user account created and signed in ")
-                        }
+                            // Store login in keychain so that it can be retrieved later
+                            if let user = user {
+                                self.storeloginInKeychain(id: user.uid)
+                                }
+                            }
                     })
                 }
             })
@@ -73,8 +93,14 @@ class LoginPageVC: UIViewController {
             
         }
         
+       
         
     }
     
-
+    func storeloginInKeychain(id: String) {
+        
+       let val = KeychainWrapper.standard.set(id, forKey: "uid")
+        print("Saved to keychain: \(val)")
+        performSegue(withIdentifier: "toNewsFeed", sender: nil)
+    }
 }
