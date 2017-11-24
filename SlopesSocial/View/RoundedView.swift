@@ -1,14 +1,14 @@
 //
-//  RoundBtn.swift
+//  RoundedView.swift
 //  SlopesSocial
 //
-//  Created by George Woolley on 21/11/2017.
+//  Created by George Woolley on 24/11/2017.
 //  Copyright © 2017 George Woolley. All rights reserved.
 //
 
 import UIKit
 
-class RoundBtn: UIButton {
+class RoundedView: UIImageView{
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -18,22 +18,20 @@ class RoundBtn: UIButton {
         layer.shadowRadius = 2
         layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
         
-        imageView?.contentMode = .scaleAspectFit
-        // layer.cornerRadius = 10   //Makes corners round instead of whole btn round
-        
-    }
-
-  //   Width of frame hasnt been calced in awakfromNib yet
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        layer.cornerRadius = frame.size.width/2
-        
-        
+      
+        layer.cornerRadius = 15   //Makes corners round instead of whole btn round
         
     }
     
-    
-    
+//    //   Width of frame hasnt been calced in awakfromNib yet
+//
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//
+//        layer.cornerRadius = frame.size.width/2
+//
+//
+//
+//    }
+
 }

@@ -19,7 +19,10 @@
 		6B4209431FC4326E0000E633 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4209421FC4326E0000E633 /* ShadowView.swift */; };
 		6B4209461FC4332F0000E633 /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4209451FC4332F0000E633 /* constants.swift */; };
 		6B4209481FC435590000E633 /* RoundBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4209471FC435580000E633 /* RoundBtn.swift */; };
+		6B5DE3CE1FC8242300FC4318 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5DE3CD1FC8242200FC4318 /* FeedCell.swift */; };
 		6BE2310C1FC7ACBB0056F590 /* NewsFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2310B1FC7ACBB0056F590 /* NewsFeedVC.swift */; };
+		6BE2310E1FC7BF020056F590 /* ShadowViewCurved.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2310D1FC7BF020056F590 /* ShadowViewCurved.swift */; };
+		6BE231101FC7E2880056F590 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2310F1FC7E2880056F590 /* RoundedView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +41,10 @@
 		6B4209421FC4326E0000E633 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		6B4209451FC4332F0000E633 /* constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
 		6B4209471FC435580000E633 /* RoundBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundBtn.swift; sourceTree = "<group>"; };
+		6B5DE3CD1FC8242200FC4318 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		6BE2310B1FC7ACBB0056F590 /* NewsFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedVC.swift; sourceTree = "<group>"; };
+		6BE2310D1FC7BF020056F590 /* ShadowViewCurved.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowViewCurved.swift; sourceTree = "<group>"; };
+		6BE2310F1FC7E2880056F590 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		803DA13E460AE012813BE9CC /* Pods-SlopesSocial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlopesSocial.release.xcconfig"; path = "Pods/Target Support Files/Pods-SlopesSocial/Pods-SlopesSocial.release.xcconfig"; sourceTree = "<group>"; };
 		D48E000FB40261908E28A443 /* Pods-SlopesSocial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlopesSocial.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SlopesSocial/Pods-SlopesSocial.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,9 +116,12 @@
 			isa = PBXGroup;
 			children = (
 				6B4209421FC4326E0000E633 /* ShadowView.swift */,
+				6BE2310D1FC7BF020056F590 /* ShadowViewCurved.swift */,
 				6B4209471FC435580000E633 /* RoundBtn.swift */,
 				6B12D0D01FC69D7E00E77F2C /* CustomTextField.swift */,
 				6B12D0D21FC69EE600E77F2C /* CustomSignInBtn.swift */,
+				6BE2310F1FC7E2880056F590 /* RoundedView.swift */,
+				6B5DE3CD1FC8242200FC4318 /* FeedCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -302,11 +311,14 @@
 			files = (
 				6B4209431FC4326E0000E633 /* ShadowView.swift in Sources */,
 				6B4209481FC435590000E633 /* RoundBtn.swift in Sources */,
+				6BE2310E1FC7BF020056F590 /* ShadowViewCurved.swift in Sources */,
 				6B12D0D31FC69EE600E77F2C /* CustomSignInBtn.swift in Sources */,
+				6B5DE3CE1FC8242300FC4318 /* FeedCell.swift in Sources */,
 				6B12D0D11FC69D7E00E77F2C /* CustomTextField.swift in Sources */,
 				6B42092D1FC41E850000E633 /* LoginPageVC.swift in Sources */,
 				6BE2310C1FC7ACBB0056F590 /* NewsFeedVC.swift in Sources */,
 				6B42092B1FC41E850000E633 /* AppDelegate.swift in Sources */,
+				6BE231101FC7E2880056F590 /* RoundedView.swift in Sources */,
 				6B4209461FC4332F0000E633 /* constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
