@@ -56,7 +56,8 @@ class LoginPageVC: UIViewController {
                     }
                     print("Successfully signed in FB as:", user ?? "")
                     if let user = user {
-                        self.storeloginInKeychain(id: user.uid)
+                        let userData = ["provider": credential.provider]
+                        self.storeKeychainAndCreateDBUser(id: user.uid, users: userData)
                     }
                    
             }
@@ -71,7 +72,8 @@ class LoginPageVC: UIViewController {
                 if error == nil {   //user signed in with existing account
                     print("Signed in with existing email")
                     if let user = user {
-                        self.storeloginInKeychain(id: user.uid)
+                        let userData = ["provider": user.providerID]
+                        self.storeKeychainAndCreateDBUser(id: user.uid, users: userData)
                     }
                     
                 } else {
@@ -83,7 +85,8 @@ class LoginPageVC: UIViewController {
                             print("New user account created and signed in ")
                             // Store login in keychain so that it can be retrieved later
                             if let user = user {
-                                self.storeloginInKeychain(id: user.uid)
+                                let userData = ["provider": user.providerID]
+                                self.storeKeychainAndCreateDBUser(id: user.uid, users: userData )
                                 }
                             }
                     })
@@ -97,7 +100,9 @@ class LoginPageVC: UIViewController {
         
     }
     
-    func storeloginInKeychain(id: String) {
+    func storeKeychainAndCreateDBUser(id: String, users: Dictionary<String, String>) {
+        
+        DataService.ds.createFireDBUser(uid: id, users: users)
         
        let val = KeychainWrapper.standard.set(id, forKey: "uid")
         print("Saved to keychain: \(val)")
