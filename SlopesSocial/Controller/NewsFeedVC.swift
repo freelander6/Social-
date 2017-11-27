@@ -16,8 +16,10 @@ class NewsFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var posts = [Post]()
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return posts.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -25,9 +27,17 @@ class NewsFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
-        return tableView.dequeueReusableCell(withIdentifier: "cell") as! FeedCell
-    }
+        
+        let post = posts[indexPath.row]
+        
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? FeedCell {
+            cell.configureCell(post: post)
+            return cell
+        } else {
+            return FeedCell()
+        }
+  
+}
     
 
     override func viewDidLoad() {
@@ -35,6 +45,26 @@ class NewsFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        DataService.ds.DBrefPosts.observe(.value) { (snapshot) in
+            
+            self.posts = []
+            
+            if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
+                for snap in snapshots {
+                    if let dicOfPosts = snap.value as? Dictionary<String,AnyObject> {
+                        
+                        let key = snap.key
+                        
+                        let post = Post(postID: key, userData: dicOfPosts)
+                        
+                        self.posts.append(post)
+                       
+                    }
+                }
+                self.tableView.reloadData()
+            }
+    }
 
         
         // Do any additional setup after loading the view.

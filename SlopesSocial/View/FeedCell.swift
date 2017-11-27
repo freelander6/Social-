@@ -16,11 +16,21 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var mainImage: UIImageView!
     @IBOutlet weak var textField: UITextView!
     @IBOutlet weak var likeCounter: UILabel!
+    
+    var post: Post!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
+    func configureCell(post: Post) {
+        self.post = post
+        self.textField.text = post.caption
+        self.likeCounter.text = String(describing: post.likes)
+
+        
+    }
+    
    
 }
