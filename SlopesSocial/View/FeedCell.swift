@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class FeedCell: UITableViewCell {
     
@@ -24,13 +25,37 @@ class FeedCell: UITableViewCell {
         // Initialization code
     }
 
-    func configureCell(post: Post) {
+    func configureCell(post: Post, img: UIImage?) {
         self.post = post
         self.textField.text = post.caption
         self.likeCounter.text = String(describing: post.likes)
 
+        if img != nil {
+            //Image in cache
+            self.mainImage.image = img
+        } else {
+            //Download image
+           
+                let ref = Storage.storage().reference(forURL: post.imageURL)
+            ref.getData(maxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                if error != nil {
+                    print("A download error has occured: \(String(describing: error))")
+                } else {
+                    print("Image downloaded")
+                    if let imageData = data {
+                        if let img = UIImage(data: imageData) {
+                            self.mainImage.image = img
+                            NewsFeedVC.imageCache.setObject(img, forKey: post.imageURL as NSString)
+                        }
+                    }
+                }
+                
+            })
+            
+        }
         
     }
     
    
 }
+

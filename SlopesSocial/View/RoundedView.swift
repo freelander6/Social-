@@ -20,7 +20,7 @@ class RoundedView: UIImageView{
         
       
         layer.cornerRadius = 15   //Makes corners round instead of whole btn round
-        
+        clipsToBounds = true
     }
     
 //    //   Width of frame hasnt been calced in awakfromNib yet

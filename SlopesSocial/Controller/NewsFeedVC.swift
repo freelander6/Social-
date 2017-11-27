@@ -12,11 +12,13 @@ import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-class NewsFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class NewsFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var addImage: RoundedView!
     @IBOutlet weak var tableView: UITableView!
-    
+    var imagePicker: UIImagePickerController!
     var posts = [Post]()
+    static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
@@ -31,9 +33,16 @@ class NewsFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let post = posts[indexPath.row]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? FeedCell {
-            cell.configureCell(post: post)
-            return cell
-        } else {
+            
+            if let img = NewsFeedVC.imageCache.object(forKey: post.imageURL as NSString) {
+                
+                cell.configureCell(post: post, img: img)
+                return cell
+            } else {
+                cell.configureCell(post: post, img: nil)
+                return cell
+            }
+                } else {
             return FeedCell()
         }
   
@@ -45,6 +54,11 @@ class NewsFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
+        
         
         DataService.ds.DBrefPosts.observe(.value) { (snapshot) in
             
@@ -69,11 +83,28 @@ class NewsFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         // Do any additional setup after loading the view.
     }
+    
+    //Once image is selected
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {   //Check that we get an image back from the edited picker
+            addImage.image = image
+        } else {
+            print("Invalid image selected")
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func addImageBtnPressed(_ sender: Any) {
+         present(imagePicker, animated: true, completion: nil)
+    }
+    
     
     @IBAction func signOutPressed(_ sender: Any) {
         

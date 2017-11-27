@@ -209,7 +209,7 @@
                                                                         </imageView>
                                                                     </subviews>
                                                                 </stackView>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="obm-mi-9kY">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="obm-mi-9kY" customClass="RoundedView" customModule="SlopesSocial" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="52" width="327" height="119.5"/>
                                                                 </imageView>
                                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MhW-ap-PRY">
@@ -223,6 +223,12 @@
                                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                 </textView>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="MhW-ap-PRY" firstAttribute="top" secondItem="obm-mi-9kY" secondAttribute="bottom" constant="3" id="RwN-3P-VxN"/>
+                                                                <constraint firstItem="obm-mi-9kY" firstAttribute="leading" secondItem="zd0-op-Hb4" secondAttribute="leading" id="Zqk-nx-m97"/>
+                                                                <constraint firstItem="obm-mi-9kY" firstAttribute="top" secondItem="Odp-rp-fUB" secondAttribute="bottom" constant="3" id="d7q-T7-naU"/>
+                                                                <constraint firstAttribute="trailing" secondItem="obm-mi-9kY" secondAttribute="trailing" id="hXb-M2-AdL"/>
+                                                            </constraints>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="bum-Zc-oIp">
                                                             <rect key="frame" x="260.5" y="292.5" width="75.5" height="20.5"/>
@@ -278,13 +284,17 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="B5a-4u-l9c">
                                         <rect key="frame" x="8" y="8" width="327" height="49"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="Ig1-P8-5ZF" customClass="RoundedView" customModule="SlopesSocial" customModuleProvider="target">
+                                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="Ig1-P8-5ZF" customClass="RoundedView" customModule="SlopesSocial" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
                                                 <color key="backgroundColor" red="0.62284469604492188" green="0.67447423934936523" blue="0.96379560232162476" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="49" id="03I-t2-IXo"/>
                                                     <constraint firstAttribute="height" constant="49" id="uMw-4h-aLl"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="WqG-Xi-M4W" appends="YES" id="G0x-SG-Wvh"/>
+                                                </connections>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Post something exciting here.." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nci-1L-oSF" customClass="CustomTextField" customModule="SlopesSocial" customModuleProvider="target">
                                                 <rect key="frame" x="54" y="0.0" width="219" height="49"/>
@@ -333,11 +343,17 @@
                         <viewLayoutGuide key="safeArea" id="RMR-dy-e91"/>
                     </view>
                     <connections>
+                        <outlet property="addImage" destination="Ig1-P8-5ZF" id="2F6-Zx-RE4"/>
                         <outlet property="tableView" destination="H1v-rJ-eOa" id="Xlu-xm-Ik0"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="toLogin" id="AvO-J9-TMg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XNl-do-At1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="WqG-Xi-M4W">
+                    <connections>
+                        <action selector="addImageBtnPressed:" destination="dNF-8e-D5h" id="xH2-JJ-y8r"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="725.60000000000002" y="105.69715142428787"/>
         </scene>

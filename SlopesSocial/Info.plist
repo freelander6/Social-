@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibrayUsageDescription</key>
+	<string>Access to photos is needed for new posts </string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
